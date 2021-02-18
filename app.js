@@ -47,4 +47,31 @@ function maxNumber(x, y) {
 maxNumber(2,4)
 
 // Write a JavaScript function with conditional statement to sort three numbers. (use if/else only)
-
+function sortNumber (a,b,c) {
+    let min;
+    if (a<b && a<c) { 
+        min=a;
+    } else if (b<a && b<c) {
+        min = b;
+    } else { 
+        min=c;
+    }
+    let mid;
+    if (a<b && a>c) { 
+        mid=a;
+    } else if (b<a && b>c) {
+        mid = b;
+    } else { 
+        mid=c;
+    }
+    let max;
+    if (a>b && a>c) { 
+        max=a;
+    } else if (b>a && b>c) {
+        max = b;
+    } else { 
+        max=c;
+    }
+    console.log (min, mid, max)
+}
+sortNumber(5,7,2)

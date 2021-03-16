@@ -1,14 +1,40 @@
-console.log("\nNice work! Your first application have been launched.");
-console.log("Now, I need to know your name, type it below: Kristina ");
+const randomstring = require("randomstring");
+const fs = require('fs');
+const { setTimeout } = require("timers");
 
-let stdin = process.openStdin();
+let student = {
+    "name": randomstring.generate({
+        length: 10,
+        charset: 'alphabetic'
+    }),
+    "surname": randomstring.generate({
+        length: 10,
+        charset: 'alphabetic'
+    }),
+    "rate": Math.ceil(Math.random() * 100)
+}
+//console.log(student);
+let string = JSON.stringify(student);
+//console.log(string);
 
-stdin.addListener("data", (txt) => {
-    if(txt.toString().trim() === "quit") {
-        console.log("\nHave a nice JS trip! Bye-bye");
-        stdin.end();
-    } else {
-        console.log(`\nHi ${txt.toString().trim()}, nice to meet you at Eleks QA Academy 2021. I am sure you'll become great in your job.`);
-        console.log(`${txt.toString().trim()}, to quit this application you can use 'Ctrl + C' keys, or type 'quit' and hit 'Enter'`); 
-    }   
-  });
+let obj;
+let obj1;
+fs.appendFile("new.json", string,
+    function (err) {
+        if (err) throw err;
+        console.log(string);
+    });
+
+
+    obj = fs.readFile("new.json", "utf8",
+        function (err, data) {
+            if (err) throw err;
+            console.log(data);
+            obj1 = JSON.parse(data);
+        }
+    );
+
+setTimeout(() => {
+    
+    console.log(obj1);
+}, 4000);

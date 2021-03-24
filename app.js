@@ -1,6 +1,5 @@
 const randomstring = require("randomstring");
 const fs = require('fs');
-const { setTimeout } = require("timers");
 
 let student = {
     "name": randomstring.generate({
@@ -13,28 +12,41 @@ let student = {
     }),
     "rate": Math.ceil(Math.random() * 100)
 }
-//console.log(student);
-let string = JSON.stringify(student);
-//console.log(string);
 
-let obj;
-let obj1;
+let string = JSON.stringify(student);
+
+
 fs.appendFile("new.json", string,
     function (err) {
         if (err) throw err;
-        console.log(string);
-    });
+        console.log('Created');
 
 
-    obj = fs.readFile("new.json", "utf8",
-        function (err, data) {
-            if (err) throw err;
-            console.log(data);
-            obj1 = JSON.parse(data);
-        }
-    );
+        fs.readFile("new.json", "utf8",
+            function (err, data) {
+                if (err) throw err;
+                console.log(data);
+                let obj1 = JSON.parse(data);
+                console.log(obj1);
 
-setTimeout(() => {
-    
-    console.log(obj1);
-}, 4000);
+                let objectChanged = obj1;
+                objectChanged.name = 'Kris';
+
+                fs.appendFile("new.json", JSON.stringify(objectChanged),
+                    function (err) {
+                        if (err) throw err;
+                        console.log(obj1);
+                    })
+
+            })
+    })
+
+// fs.appendFile("new.json", obj1 = {
+//     "age": 20
+// },
+    // function (err) {
+    //     if (err) throw err;
+    //     console.log('')
+    // });
+
+

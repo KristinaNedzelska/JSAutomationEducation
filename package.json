@@ -4,7 +4,6 @@
   "description": "demo",
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "jasmine": "^3.7.0"
   },
